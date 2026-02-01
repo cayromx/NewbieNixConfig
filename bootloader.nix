@@ -4,6 +4,7 @@
   boot = {
     loader.limine.enable = true;
     loader.limine.efiSupport = true;
+    loader.efi.canTouchEfiVariables = true;
   #sysctl parameters
   kernel.sysctl = {
     "vm.swappiness" = 10; 
