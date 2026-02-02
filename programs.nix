@@ -13,6 +13,7 @@
          goverlay
          mangohud
          tree 
+         
          ]; 
 
 
@@ -21,6 +22,7 @@
            enable = true;
            protontricks.enable = true;  
           };
+         gamemode.enable = true;
          };
           
 	}

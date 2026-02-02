@@ -73,4 +73,27 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  home.file.".config/MangoHud/MangoHud.conf".text = '' 
+cpu_text=CPU
+cpu_stats
+cpu_mhz
+cpu_temp
+cpu_power
+cpu_color=2E97CB
+vram
+vram_color=AD64C1
+ram
+ram_color=C26693
+fps
+frametime   
+frametime_color=00FF00
+fps_limit_method=late 
+fps_limit=0
+gpu_load 
+gpu_fan
+gpu_junction_temp
+gpu_temp
+gpu_core_clock
+gamemode
+'';
 }
