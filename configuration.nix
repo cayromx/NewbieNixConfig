@@ -11,6 +11,9 @@
       ./programs.nix
       ./bootloader.nix
       ./network.nix
+      ./services.nix
+      ./hardware.nix
+      ./virtualisation.nix
     ];
 
   # Use latest kernel.
@@ -23,16 +26,6 @@
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
-  # home-manager
-
-  home-manager = {
-   useGlobalPkgs = true;
-   useUserPackages = true;
-   users = {
-      "przemyslaw" = import ./home.nix;
-    };
-   };  
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -93,7 +86,7 @@
     description = "przemyslaw";
     hashedPassword = "$6$jmiet8OZKoJbi32t$XJkhervOqFc2aUVmAwB6yoKOagWdmdpA8cTmsMF.UB.eCAaZiJm1bVF8LtIxznLcdrUvT24WmMfVH5.3T2yWy.";
 
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird

@@ -1,6 +1,9 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, lib, unstable,  ... }:
+let 
+    pt = pkgs.ciscoPacketTracer8;
+in 
 {
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "przemyslaw";
@@ -21,7 +24,7 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
-
+    pt
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -70,9 +73,30 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
+  #PacketTracer theme config
 
-  # Let Home Manager install and manage itself.
+  xdg.desktopEntries.cisco-pt8 = {
+    name = "Cisco Packet Tracer 8";
+    genericName = "Network Simulation";
+    exec = ''env XDG_CONFIG_HOME=${config.home.homeDirectory}/.config-packettracer ${lib.getExe pt} %f'';
+    icon = "cisco-packet-tracer-8";         
+    type = "Application";
+    categories = [ "Network" "Education" ];
+    terminal = false;
+    mimeType = [ "application/x-pkt" "application/x-pka" "x-scheme-handler/pttp" ];
+  }; 
+
+  programs.vscode = { 
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      jnoortheen.nix-ide
+     ];
+   };
+ # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  #goverlay config
+
   home.file.".config/MangoHud/MangoHud.conf".text = '' 
 cpu_text=CPU
 cpu_stats
@@ -96,4 +120,8 @@ gpu_temp
 gpu_core_clock
 gamemode
 '';
+
+
+
+
 }

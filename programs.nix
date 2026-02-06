@@ -1,8 +1,8 @@
-  { config, pkgs, ... }: 
+  { config, pkgs, unstable, ... }: 
 
        {
          environment.systemPackages = with pkgs; [
-         vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by defa>
+         vim 
          wget
          git
          btop
@@ -13,10 +13,17 @@
          goverlay
          mangohud
          tree 
-         
+         unzip
+         qemu
+         virt-manager
+         libvirt
          ]; 
+        
+         nixpkgs.config.permittedInsecurePackages = [ 
+           "ciscoPacketTracer8-8.2.2"
+         ];
 
-
+           
          programs = {
          steam = {
            enable = true;
